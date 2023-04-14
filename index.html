@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock By Akira</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+
+<style>
+  .discord {
+      color: black;
+      transition: 0.2s;
+      text-decoration: none;
+      margin: 0 10px;
+      position: absolute;
+      top: 500px;
+      right: 0px;
+      transform: translateX(-700px);
+}
+
+  .discord:hover {
+      color: white;
+  }
+
+  ion-icon {
+font-size: 64px;
+}
+</style>
+
+<body>
+  <ion-icon size="large"></ion-icon>
+  <a class="discord" href="https://discord.gg/pcYgn784GJ" target="_blank">
+      <ion-icon name="logo-discord"></ion-icon>
+  </a>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+<style>
+  .discord {
+      color: black;
+      transition: 0.2s;
+      text-decoration: none;
+      margin: 0 10px;
+      position: absolute;
+      top: 500px;
+      right: 0px;
+      transform: translateX(-700px);
+}
+
+  .discord:hover {
+      color: white;
+  }
+
+  ion-icon {
+font-size: 64px;
+}
+</style>
+
+<body>
+  <ion-icon size="large"></ion-icon>
+  <a class="facebook" href="https://www.facebook.com/ak1r4z" target="_blank">
+    <ion-icon name="logo-facebook"></ion-icon>
+  </a>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+<style>
+  .facebook {
+      color: black;
+      transition: 0.2s;
+      text-decoration: none;
+      margin: 0 10px;
+      position: absolute;
+      top: 500px;
+      right: -100px;
+      transform: translateX(-700px);
+}
+
+  .facebook:hover {
+      color: white;
+  }
+
+  ion-icon {
+font-size: 64px;
+}
+</style>
+
+<body>
+  <ion-icon size="large"></ion-icon>
+  <a class="instagram" href="https://www.instagram.com/ak1r4_lua/" target="_blank">
+    <ion-icon name="logo-instagram"></ion-icon>
+  </a>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+<style>
+  .instagram {
+      color: black;
+      transition: 0.2s;
+      text-decoration: none;
+      margin: 0 10px;
+      position: absolute;
+      top: 500px;
+      right: -200px;
+      transform: translateX(-700px);
+}
+
+  .instagram:hover {
+      color: white;
+  }
+
+  ion-icon {
+font-size: 64px;
+}
+</style>
+
+</body>
+   <div class="digital-clock">
+    <i  class="uil uil-ellipsis-v dot-menu-btn" id="active-menu"></i>
+    <ul  class="dot-menu" id="active-menu"> 
+      <li class="menu-item" id="active-menu">
+        <span class="clock-format-text" id="active-menu">24-hours format</span>
+        <div class="format-switch-btn" id="active-menu" data-format="12"></div>
+      </li>
+    </ul>
+    <div class="time">
+      <span class="hours">00</span>
+      <span class="dots">:</span>
+      <span class="minutes">00</span>
+      <div class="right-side">
+        <span class="period">AM/PM</span>
+        <span class="seconds">00</span>
+      </div>
+    </div>
+    <div class="calender">
+        <span class="mounth-name">Mounth</span>,
+        <span class="day-name">Day</span>
+        <span class="day-number">00</span>
+        <!--<span class="year">0000</span>-->
+    </div>
+  </div>
+  <script>
+    const formatSwitchbtn = document.querySelector(".format-switch-btn")
+    formatSwitchbtn.addEventListener("click", () => {
+      formatSwitchbtn.classList.toggle("active")
+
+      var formatValue = formatSwitchbtn.getAttribute("data-format");
+
+      if(formatValue === "12"){
+        formatSwitchbtn.setAttribute("data-format", "24");
+      }
+      else{
+        formatSwitchbtn.setAttribute("data-format", "12");
+      }
+    });
+
+
+    function clock(){
+        var today = new Date();
+
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        var seconds = today.getSeconds();
+        let period = "AM";
+
+        if(hours >=12){
+            period = "PM"
+        }
+
+        var formatValue = formatSwitchbtn.getAttribute("data-format");
+
+        if(formatValue === "12"){
+          hours = hours > 12 ? hours % 12 : hours;
+        }
+
+        if(hours < 10){
+            hours = "0" + hours;
+        }
+
+        if(minutes < 10){
+            minutes = "0" + minutes;
+        }
+
+        if(seconds < 10){
+            seconds = "0" + seconds;
+        }
+
+        document.querySelector(".hours").innerHTML = hours;
+        document.querySelector(".minutes").innerHTML = minutes;
+        document.querySelector(".seconds").innerHTML = seconds;
+        document.querySelector(".period").innerHTML = period;  
+    }
+
+    var updatrClock = setInterval(clock, 1000);
+
+    var today = new Date()
+    const dayNumber = today.getDate();
+    const year = today.getFullYear();
+    const dayName = today.toLocaleDateString("default", {weekday: "long"});
+    const mounthName = today.toLocaleDateString("default", {month: "short"});
+
+    document.querySelector(".mounth-name").innerHTML = mounthName;
+    document.querySelector(".day-name").innerHTML = dayName;
+    document.querySelector(".day-number").innerHTML = dayNumber;
+    //document.querySelector(".year").innerHTML = year;
+
+    const dotmenuBtn = document.querySelector(".dot-menu-btn");
+    const dotMenu = document.querySelector(".dot-menu");
+
+ dotmenuBtn.addEventListener("click", () => {
+   dotMenu.classList.toggle("active");
+ });
+
+  document.addEventListener("click", (e) => {
+    if(e.target.id !== "active-menu"){
+      dotMenu.classList.remove("active");
+    }
+  });
+  </script>
+
+</body>
+</html>
